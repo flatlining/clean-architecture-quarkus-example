@@ -40,11 +40,17 @@ References
 
   - `Clean Architecture Guide (with tested examples)`_
   - `Clean Architecture For The Rest Of Us`_
+  - `Clean Architecture Example with Java and Spring Boot`_
 
 - Quarkus_
 
   - `Quarkus - Get Started`_
   - `Quarkus Workshop`_
+
+- Identities
+
+  - `ID properties on Domain objects in DDD`_
+  - `PolyglotPersistence`_
 
 .. Links
 
@@ -55,3 +61,6 @@ References
 .. _`lievendoclo/clean-arch-quarkus`: https://github.com/lievendoclo/clean-arch-quarkus
 .. _`Clean Architecture Guide (with tested examples)`: https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29
 .. _`Clean Architecture For The Rest Of Us`: https://pusher.com/tutorials/clean-architecture-introduction
+.. _`Clean Architecture Example with Java and Spring Boot`: https://medium.com/swlh/clean-architecture-java-spring-fea51e26e00
+.. _`ID properties on Domain objects in DDD`: https://softwareengineering.stackexchange.com/a/299668
+.. _`PolyglotPersistence`: https://martinfowler.com/bliki/PolyglotPersistence.html
