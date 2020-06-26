@@ -52,6 +52,11 @@ References
   - `ID properties on Domain objects in DDD`_
   - `PolyglotPersistence`_
 
+- Value Objects
+
+  - `Don’t use Lombok`_
+  - `Immutables`_
+
 .. Links
 
 .. _Quarkus: https://quarkus.io/
@@ -64,3 +69,5 @@ References
 .. _`Clean Architecture Example with Java and Spring Boot`: https://medium.com/swlh/clean-architecture-java-spring-fea51e26e00
 .. _`ID properties on Domain objects in DDD`: https://softwareengineering.stackexchange.com/a/299668
 .. _`PolyglotPersistence`: https://martinfowler.com/bliki/PolyglotPersistence.html
+.. _`Don’t use Lombok`: https://medium.com/@vgonzalo/dont-use-lombok-672418daa819
+.. _`Immutables`: https://immutables.github.io/
