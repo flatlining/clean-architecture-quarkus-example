@@ -27,6 +27,10 @@ public interface RepositoryName {
         }
     }
 
+    default String getFullname() {
+        return String.format("%s/%s", getOwner(), getName());
+    }
+
     class Builder extends ImmutableRepositoryName.Builder {
     }
 }

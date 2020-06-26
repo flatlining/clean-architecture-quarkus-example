@@ -27,7 +27,7 @@ class RepositoryNameTest {
         @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
         @NullAndEmptySource
         @ValueSource(strings = {"  "})
-        void ownerMustExist(String owner) {
+        void invalidOwner(String owner) {
             // Given
 
             // When
@@ -44,7 +44,7 @@ class RepositoryNameTest {
         @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
         @NullAndEmptySource
         @ValueSource(strings = {"  "})
-        void nameMustExist(String name) {
+        void invalidName(String name) {
             // Given
 
             // When
@@ -88,7 +88,7 @@ class RepositoryNameTest {
             // Then
             assertThat(actual.getOwner(), equalTo("owner"));
             assertThat(actual.getName(), equalTo("name"));
-            //assertThat(actual.getFullName(), equalTo("owner/name"));
+            assertThat(actual.getFullname(), equalTo("owner/name"));
         }
     }
 
