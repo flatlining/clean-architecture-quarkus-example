@@ -53,4 +53,30 @@ public class RepositoryName {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public static final class Builder {
+        private String owner;
+        private String name;
+
+        private Builder() {
+        }
+
+        public static Builder aRepositoryName() {
+            return new Builder();
+        }
+
+        public Builder withOwner(String owner) {
+            this.owner = owner;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public RepositoryName build() {
+            return new RepositoryName(owner, name);
+        }
+    }
 }

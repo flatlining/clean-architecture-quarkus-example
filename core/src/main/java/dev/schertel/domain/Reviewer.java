@@ -21,7 +21,6 @@ public class Reviewer {
         Objects.requireNonNull(name, "name");
         Objects.requireNonNull(email, "email");
 
-
         // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
         final Pattern validEmail = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
 
@@ -64,5 +63,37 @@ public class Reviewer {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static final class Builder {
+        private String username;
+        private String name;
+        private String email;
+
+        private Builder() {
+        }
+
+        public static Builder aReviewer() {
+            return new Builder();
+        }
+
+        public Builder withUsername(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Reviewer build() {
+            return new Reviewer(username, name, email);
+        }
     }
 }

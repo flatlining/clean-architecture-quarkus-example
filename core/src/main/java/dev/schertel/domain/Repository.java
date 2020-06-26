@@ -11,10 +11,6 @@ public class Repository {
     private final URI uri;
     private final List<Reviewer> reviewers;
 
-    public Repository(RepositoryName name, URI uri) {
-        this(name, uri, Collections.emptyList());
-    }
-
     public Repository(RepositoryName name, URI uri, List<Reviewer> reviewers) {
         validate(name, uri);
         this.name = name;
@@ -61,5 +57,37 @@ public class Repository {
                 ", uri=" + uri +
                 ", reviewers=" + reviewers +
                 '}';
+    }
+
+    public static final class Builder {
+        private RepositoryName name;
+        private URI uri;
+        private List<Reviewer> reviewers;
+
+        private Builder() {
+        }
+
+        public static Builder aRepository() {
+            return new Builder();
+        }
+
+        public Builder withName(RepositoryName name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withUri(URI uri) {
+            this.uri = uri;
+            return this;
+        }
+
+        public Builder withReviewers(List<Reviewer> reviewers) {
+            this.reviewers = reviewers;
+            return this;
+        }
+
+        public Repository build() {
+            return new Repository(name, uri, reviewers);
+        }
     }
 }
