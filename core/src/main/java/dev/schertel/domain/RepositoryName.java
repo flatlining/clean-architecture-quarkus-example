@@ -15,7 +15,13 @@ public class RepositoryName {
 
     private void validate(String owner, String name) {
         Objects.requireNonNull(owner, "owner");
+        if (owner.isBlank()) {
+            throw new NullPointerException("owner");
+        }
         Objects.requireNonNull(name, "name");
+        if (name.isBlank()) {
+            throw new NullPointerException("name");
+        }
     }
 
     public String getOwner() {
@@ -52,6 +58,10 @@ public class RepositoryName {
                 "owner='" + owner + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public static Builder builder() {
+        return Builder.aRepositoryName();
     }
 
     public static final class Builder {
