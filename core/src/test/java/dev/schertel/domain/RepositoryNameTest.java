@@ -1,5 +1,10 @@
 package dev.schertel.domain;
 
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -71,5 +76,24 @@ class RepositoryNameTest {
         assertThat(actual.getOwner(), equalTo("owner"));
         assertThat(actual.getName(), equalTo("name"));
         assertThat(actual.getFullName(), equalTo("owner/name"));
+    }
+
+    @Nested
+    public class Override {
+        private final Class<RepositoryName> CLAZZ = RepositoryName.class;
+
+        @Test
+        void testToString() {
+            ToStringVerifier.forClass(CLAZZ)
+                    .withClassName(NameStyle.SIMPLE_NAME)
+                    .verify();
+        }
+
+        @Test
+        void testEquals() {
+            EqualsVerifier.forClass(CLAZZ)
+                    .suppress(Warning.STRICT_INHERITANCE)
+                    .verify();
+        }
     }
 }

@@ -41,7 +41,7 @@ public class RepositoryName {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof RepositoryName)) return false;
         RepositoryName that = (RepositoryName) o;
         return Objects.equals(owner, that.owner) &&
                 Objects.equals(name, that.name);
