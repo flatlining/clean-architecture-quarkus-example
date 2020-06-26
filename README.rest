@@ -1,0 +1,37 @@
+..
+  Supported languages https://pygments.org/docs/lexers/
+  Sections https://devguide.python.org/documenting/#sections
+
+  #####################
+  Title of the Document
+  #####################
+
+  ****************
+  Title of chapter
+  ****************
+
+  Level 1 Sections
+  ################
+
+  Level 2 Sections
+  ****************
+
+  Level 3 Section
+  ===============
+
+  Level 4 Section
+  ---------------
+
+  Level 5 Section
+  ^^^^^^^^^^^^^^^
+
+  Level 6 Section
+  """""""""""""""
+
+##################
+Quarkus Playground
+##################
+
+This is a quarkus_ playground.
+
+.. _quarkus: https://quarkus.io/
