@@ -1,9 +1,7 @@
 package dev.schertel.domain;
 
-import com.jparams.verifier.tostring.NameStyle;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -17,75 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RepositoryNameTest {
 
-    @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
-    @NullAndEmptySource
-    @ValueSource(strings = {"  "})
-    void ownerMustExist(String owner) {
-        // Given
-
-        // When
-        Exception exception = assertThrows(
-                RuntimeException.class,
-                () -> new RepositoryName(owner, "name")
-        );
-
-        // Then
-        assertThat(exception, instanceOf(NullPointerException.class));
-        assertThat(exception.getMessage(), containsString("owner"));
-    }
-
-    @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
-    @NullAndEmptySource
-    @ValueSource(strings = {"  "})
-    void nameMustExist(String name) {
-        // Given
-
-        // When
-        Exception exception = assertThrows(
-                RuntimeException.class,
-                () -> new RepositoryName("owner", name)
-        );
-
-        // Then
-        assertThat(exception, instanceOf(NullPointerException.class));
-        assertThat(exception.getMessage(), containsString("name"));
-    }
-
-    @Test
-    void nullConstructor() {
-        // Given
-
-        // When
-        Exception exception = assertThrows(
-                RuntimeException.class,
-                () -> new RepositoryName(null, null)
-        );
-
-        // Then
-        assertThat(exception, instanceOf(NullPointerException.class));
-        assertThat(exception.getMessage(), not(blankString()));
-    }
-
-    @Test
-    void fullConstructor() {
-        // Given
-
-        // When
-        RepositoryName actual = new RepositoryName("owner", "name");
-
-        // Then
-        assertThat(actual.getOwner(), equalTo("owner"));
-        assertThat(actual.getName(), equalTo("name"));
-        assertThat(actual.getFullName(), equalTo("owner/name"));
-    }
-
     @Nested
     public class Builder {
         private RepositoryName.Builder builder;
 
         @BeforeEach
         void setUp() {
-            builder = RepositoryName.builder();
+            builder = new RepositoryName.Builder();
         }
 
         @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
@@ -93,14 +29,11 @@ class RepositoryNameTest {
         @ValueSource(strings = {"  "})
         void ownerMustExist(String owner) {
             // Given
-            builder
-                    .withOwner(owner)
-                    .withName("name");
 
             // When
             Exception exception = assertThrows(
                     RuntimeException.class,
-                    () -> builder.build()
+                    () -> builder.withOwner(owner).withName("name").build()
             );
 
             // Then
@@ -113,14 +46,11 @@ class RepositoryNameTest {
         @ValueSource(strings = {"  "})
         void nameMustExist(String name) {
             // Given
-            builder
-                    .withOwner("owner")
-                    .withName(name);
 
             // When
             Exception exception = assertThrows(
                     RuntimeException.class,
-                    () -> builder.build()
+                    () -> builder.withOwner("owner").withName(name).build()
             );
 
             // Then
@@ -139,8 +69,9 @@ class RepositoryNameTest {
             );
 
             // Then
-            assertThat(exception, instanceOf(NullPointerException.class));
-            assertThat(exception.getMessage(), not(blankString()));
+            assertThat(exception, instanceOf(IllegalStateException.class));
+            assertThat(exception.getMessage(), containsString("owner"));
+            assertThat(exception.getMessage(), containsString("name"));
         }
 
         @Test
@@ -157,25 +88,24 @@ class RepositoryNameTest {
             // Then
             assertThat(actual.getOwner(), equalTo("owner"));
             assertThat(actual.getName(), equalTo("name"));
-            assertThat(actual.getFullName(), equalTo("owner/name"));
+            //assertThat(actual.getFullName(), equalTo("owner/name"));
         }
     }
 
     @Nested
     public class Override {
-        private final Class<RepositoryName> CLAZZ = RepositoryName.class;
+        private final Class<ImmutableRepositoryName> CLAZZ = ImmutableRepositoryName.class;
 
         @Test
         void testToString() {
             ToStringVerifier.forClass(CLAZZ)
-                    .withClassName(NameStyle.SIMPLE_NAME)
                     .verify();
         }
 
         @Test
         void testEquals() {
             EqualsVerifier.forClass(CLAZZ)
-                    .suppress(Warning.STRICT_INHERITANCE)
+                    .withNonnullFields("owner", "name")
                     .verify();
         }
     }
