@@ -4,6 +4,7 @@ import com.jparams.verifier.tostring.NameStyle;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -76,6 +77,88 @@ class RepositoryNameTest {
         assertThat(actual.getOwner(), equalTo("owner"));
         assertThat(actual.getName(), equalTo("name"));
         assertThat(actual.getFullName(), equalTo("owner/name"));
+    }
+
+    @Nested
+    public class Builder {
+        private RepositoryName.Builder builder;
+
+        @BeforeEach
+        void setUp() {
+            builder = RepositoryName.builder();
+        }
+
+        @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
+        @NullAndEmptySource
+        @ValueSource(strings = {"  "})
+        void ownerMustExist(String owner) {
+            // Given
+            builder
+                    .withOwner(owner)
+                    .withName("name");
+
+            // When
+            Exception exception = assertThrows(
+                    RuntimeException.class,
+                    () -> builder.build()
+            );
+
+            // Then
+            assertThat(exception, instanceOf(NullPointerException.class));
+            assertThat(exception.getMessage(), containsString("owner"));
+        }
+
+        @ParameterizedTest(name = "{index} \"{0}\" is a invalid value")
+        @NullAndEmptySource
+        @ValueSource(strings = {"  "})
+        void nameMustExist(String name) {
+            // Given
+            builder
+                    .withOwner("owner")
+                    .withName(name);
+
+            // When
+            Exception exception = assertThrows(
+                    RuntimeException.class,
+                    () -> builder.build()
+            );
+
+            // Then
+            assertThat(exception, instanceOf(NullPointerException.class));
+            assertThat(exception.getMessage(), containsString("name"));
+        }
+
+        @Test
+        void nullBuilder() {
+            // Given
+
+            // When
+            Exception exception = assertThrows(
+                    RuntimeException.class,
+                    () -> builder.build()
+            );
+
+            // Then
+            assertThat(exception, instanceOf(NullPointerException.class));
+            assertThat(exception.getMessage(), not(blankString()));
+        }
+
+        @Test
+        void fullBuilder() {
+            // Given
+            // Given
+            builder
+                    .withOwner("owner")
+                    .withName("name");
+
+            // When
+            RepositoryName actual = builder.build();
+
+            // Then
+            assertThat(actual.getOwner(), equalTo("owner"));
+            assertThat(actual.getName(), equalTo("name"));
+            assertThat(actual.getFullName(), equalTo("owner/name"));
+        }
     }
 
     @Nested
