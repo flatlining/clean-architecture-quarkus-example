@@ -1,4 +1,4 @@
-package dev.schertel;
+package dev.schertel.presenter;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

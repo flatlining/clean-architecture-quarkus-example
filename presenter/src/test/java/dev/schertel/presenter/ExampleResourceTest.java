@@ -1,4 +1,4 @@
-package dev.schertel;
+package dev.schertel.presenter;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
