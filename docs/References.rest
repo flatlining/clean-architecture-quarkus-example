@@ -32,11 +32,6 @@
 References
 ##########
 
-- Quarkus_
-
-  - `Quarkus - Get Started`_
-  - `Quarkus Workshop`_
-
 - Clean Architecture
 
   - `Implementing Clean Architecture with Quarkus`_
@@ -44,6 +39,12 @@ References
     - `lievendoclo/clean-arch-quarkus`_
 
   - `Clean Architecture Guide (with tested examples)`_
+  - `Clean Architecture For The Rest Of Us`_
+
+- Quarkus_
+
+  - `Quarkus - Get Started`_
+  - `Quarkus Workshop`_
 
 .. Links
 
@@ -53,3 +54,4 @@ References
 .. _`Implementing Clean Architecture with Quarkus`: https://blog.sourced-bvba.be/article/2020/03/11/ca-quarkus/
 .. _`lievendoclo/clean-arch-quarkus`: https://github.com/lievendoclo/clean-arch-quarkus
 .. _`Clean Architecture Guide (with tested examples)`: https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29
+.. _`Clean Architecture For The Rest Of Us`: https://pusher.com/tutorials/clean-architecture-introduction
