@@ -12,6 +12,7 @@
         <module>app</module>
         <module>presenter</module>
         <module>core</module>
+        <module>data</module>
     </modules>
 
     <properties>

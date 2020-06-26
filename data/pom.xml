@@ -9,22 +9,12 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>app</artifactId>
+    <artifactId>data</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>dev.schertel</groupId>
-            <artifactId>presenter</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.schertel</groupId>
             <artifactId>core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.schertel</groupId>
-            <artifactId>data</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
